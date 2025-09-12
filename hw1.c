@@ -271,7 +271,7 @@ int main() {
         printf("%i ", n[i]);
     }
 }*/
-/* Задача 11
+/* Задача 12
 #include <stdio.h>
 
 int main() 
