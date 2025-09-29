@@ -3,18 +3,16 @@
 
 int main() 
 {
-    int sum = 0;
-    int c;
-
-    while ((c = getchar()) != EOF) 
+    char c;
+    long long s = 0;
+    
+    while ((c = getchar()) != EOF && c != '\n' && c != '\r') 
     {
         if (isdigit(c)) 
         {
-            sum += c - '0';
-        } else 
-        {
-            break;
+            s += c - '0';
         }
     }
-    printf("%d\n", sum);
+    
+    printf("%lld\n", s);
 }
