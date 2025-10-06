@@ -1,33 +1,47 @@
 #include <stdio.h>
 #include <math.h>
-#define eps 1e-10
-int solve_quadratic(double a, double b, double c, double* px1, double* px2)
-{
-	int D = b * b - 4 * a * c;
-	if (D < 0)
-	{
-		return 0;
-	}else if ((D < eps || (D < eps))
-	{
-		*px1 = -b / (2 * a);
-		return 1;
-	} else
-	{
-		*px1 = -b - sqrt(D)/ (2 * a);
-		*px2 = -b + sqrt(D)/ (2 * a);
-		return 2;
-	}
-}
-int main()
-{
-	double a = 1.5;
-	double b = 6.5;
-	double c = 1.5;
-	double r1;
-	double r2;
-	int f;
-	f = solve_quadratic(a, b, c, &r1, &r2);
-	printf("%.7f\n", r1);
-	printf("%.7f\n", r2);
 
+#define EPS 1e-10
+
+int solve_quadratic(double a, double b, double c, double* px1, double* px2) 
+{
+    if (fabs(a) < EPS) 
+    {
+        if (fabs(b) < EPS) 
+        {
+            return 0;
+        } else 
+        {
+            *px1 = -c / b;
+            return 1;
+        }
+    }
+
+    double D = b * b - 4.0 * a * c;
+
+    if (D < -EPS) 
+    {
+        return 0;
+    } else if (D < EPS) 
+    {
+        *px1 = -b / (2.0 * a);
+        return 1;
+    } else 
+    {
+        double sqrtD = sqrt(D);
+        *px1 = (-b + sqrtD) / (2.0 * a);
+        *px2 = (-b - sqrtD) / (2.0 * a);
+        return 2;
+    }
+}
+
+int main() 
+{
+    double x1, x2;
+    int result;
+
+    result = solve_quadratic(1, -3, 2, &x1, &x2);
+    printf("%d\n", result);
+    if (result >= 1) printf("x1 = %g\n", x1);
+    if (result == 2) printf("x2 = %g\n", x2);
 }
